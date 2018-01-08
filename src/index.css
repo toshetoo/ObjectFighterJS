@@ -3,3 +3,38 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.round-summary, .attack-div {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+.attack-div {
+  border-bottom: 1px solid gray;
+}
+
+.normal-attack {
+  background-color: beige;
+}
+
+.special-attack {
+  background-color: lightcoral;
+}
+
+.details-holder {
+  border: 1px solid gray;
+  width: 45%;
+  display: inline-block;
+}
+
+.img {
+  height: 100%;
+}
+
+.img img {
+  max-width: 50px;
+}
+
+.consumable {
+  background-color: cadetblue;
+}
