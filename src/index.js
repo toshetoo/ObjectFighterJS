@@ -6,14 +6,44 @@ let firstFighter = undefined;
 let secondFighter = undefined;
 let fighters = [];
 
+function appendHolders() {
+    $('.container').append(`
+    <div id="choose-fighter" class="text-center">
+        <h3><span>Choose fighters</span><button class="btn btn-primary reset-game">Reset Game</button></h3>
+      </div>
+      <div id="selected-fighters" class="text-center">
+        <h3>Selected fighters</h3>
+      </div>
+      <div id="log">
+
+      </div>
+    `);
+}
+
 function attachStartButton() {
     $("#selected-fighters").append('<button class="btn btn-primary start-btn">Start fight</button>');
     $(".start-btn").on('click', function () {
+        Logger.setLogHolder('#log');
         Game.startGame(firstFighter, secondFighter);
     });
 }
 
-$(window).on('load', function () {
+function attachResetButton() {
+    $('.reset-game').on('click', function() {
+        $('.container').html('');
+        $(".start-btn").off('click');
+        $('.details-holder').off('click');
+        firstFighter = undefined;
+        secondFighter = undefined;
+        chosenFighters = 0;
+        Game.stopGame();
+        initGame();
+    });
+}
+
+function initGame() {
+    appendHolders();
+    attachResetButton();
     Game.logFighters().then((apiFighters) => {
         fighters = apiFighters;
 
@@ -29,9 +59,14 @@ $(window).on('load', function () {
                 chosenFighters++;
             }
 
-            if (chosenFighters >= 2) {
+            if (chosenFighters === 2) {
+                chosenFighters = 0;
                 attachStartButton();
             }
         });
     });
+}
+
+$(window).on('load', function () {
+    initGame();
 });

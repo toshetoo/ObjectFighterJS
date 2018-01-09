@@ -16,6 +16,10 @@ export class Referee {
         Logger.log(msg);
     }
 
+    static clearRoundNumber() {
+        roundCounter = 0;
+    }
+
     static roundSummary(first, second) {
         const msg = `
     <div class="round-summary text-center">

@@ -1,6 +1,10 @@
-const logElement = $("#log");
+let logElement = $("#log");
 
 export class Logger {
+    static setLogHolder(el) {
+        logElement = $(el);
+    }
+
     static log(message) {
         logElement.append(message);
     }

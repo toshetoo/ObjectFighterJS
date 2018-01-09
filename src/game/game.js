@@ -51,6 +51,12 @@ export default class Game {
         }, roundInterval);
     }
 
+    static stopGame() {
+        Logger.clearLog();
+        clearInterval(intervalId);
+        Referee.clearRoundNumber();
+    }
+
     static logFighters() {
         return new Promise((resolve) => {
             getFighters().then((fighters) => {
