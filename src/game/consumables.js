@@ -5,15 +5,15 @@ export default class Consumable {
     static getPotions() {
         return [
             {
-                health: 300,
+                health: 30,
                 name: "Small healing potion"
             },
             {
-                health: 400,
+                health: 40,
                 name: "Medium healing potion"
             },
             {
-                health: 500,
+                health: 50,
                 name: "Large healing potion"
             }
         ];
@@ -22,15 +22,15 @@ export default class Consumable {
     static getFood() {
         return [
             {
-                health: 100,
+                health: 10,
                 name: "Sushi"
             },
             {
-                health: 200,
+                health: 20,
                 name: "Pizza"
             },
             {
-                health: 300,
+                health: 30,
                 name: "Cake"
             }
         ];
