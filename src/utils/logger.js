@@ -5,9 +5,9 @@ export class Logger {
         logElement.append(message);
     }
 
-    static logFighter(obj) {
+    static logFighter(obj, el) {
         let msg = `
-            <div class="details-holder">
+            <div class="details-holder" data-id="${obj.id}">
                 <div class="row">
                     <div class="col-xs-2">
                         <div class="img"><img src="${obj.image}"></div>
@@ -21,7 +21,11 @@ export class Logger {
             </div>
         `;
 
-        this.log(msg);
+        if(el) {
+            $(el).append(msg);
+        } else {
+            this.log(msg);
+        }
     }
 
     static newLine() {

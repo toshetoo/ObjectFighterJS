@@ -22,6 +22,7 @@ body {
 }
 
 .details-holder {
+  text-align: left;
   border: 1px solid gray;
   width: 45%;
   display: inline-block;
@@ -37,4 +38,8 @@ body {
 
 .consumable {
   background-color: cadetblue;
+}
+
+.choose-fighter div{
+  cursor: pointer;
 }

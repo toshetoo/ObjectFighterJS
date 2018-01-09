@@ -1,17 +1,15 @@
-import {Fighter} from "../entities/fighter";
 import {Referee} from "../entities/referee";
 import {Helpers} from "../utils/helpers";
 import {Logger} from "../utils/logger";
 import Consumable from "./consumables";
+import {getFighters} from "../api/mockFighters";
 
 const roundInterval = 1000;
 let intervalId;
 
 export default class Game {
-    static startGame() {
+    static startGame(firstFighter, secondFighter) {
         Logger.clearLog();
-        let firstFighter = new Fighter('Gosho', 1000, 'https://r50gh2ss1ic2mww8s3uvjvq1-wpengine.netdna-ssl.com/wp-content/themes/bealearninghero.org/assets/images/dest/home-hero-mosaic.png');
-        let secondFighter = new Fighter('Ivan', 1000, 'http://capacitybc.com/Websites/capacitybuilding/images/hero%20icon.png');
         Referee.introduceFighters(firstFighter, secondFighter);
 
         clearInterval(intervalId);
@@ -51,5 +49,17 @@ export default class Game {
             }
 
         }, roundInterval);
+    }
+
+    static logFighters() {
+        return new Promise((resolve) => {
+            getFighters().then((fighters) => {
+                fighters.forEach(fighter => {
+                    Logger.logFighter(fighter, '#choose-fighter');
+                });
+
+                resolve(fighters);
+            });
+        });
     }
 }
