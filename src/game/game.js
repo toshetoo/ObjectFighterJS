@@ -4,7 +4,7 @@ import {Logger} from "../utils/logger";
 import Consumable from "./consumables";
 import {getFighters} from "../api/mockFighters";
 
-const roundInterval = 1000;
+const roundInterval = 500;
 let intervalId;
 
 export default class Game {
