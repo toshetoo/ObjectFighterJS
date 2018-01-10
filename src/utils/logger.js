@@ -11,7 +11,7 @@ export class Logger {
 
     static logFighter(obj, el) {
         let msg = `
-            <div class="details-holder" data-id="${obj.id}">
+            <div class="details-holder" data-id="${obj.id}" draggable="true">
                 <div class="row">
                     <div class="col-xs-2">
                         <div class="img"><img src="${obj.image}"></div>
@@ -29,6 +29,21 @@ export class Logger {
             $(el).append(msg);
         } else {
             this.log(msg);
+        }
+    }
+
+    static logTeam(team, el) {
+        let msg = `<div class="team-holder ${team.id}"></div>`;
+
+        if(el) {
+            $(el).append(msg);
+        } else {
+            this.log(msg);
+        }
+
+        let teamHolder = $(`.${team.id}`);
+        for(let fighter of team.fighters) {
+            this.logFighter(fighter, teamHolder);
         }
     }
 

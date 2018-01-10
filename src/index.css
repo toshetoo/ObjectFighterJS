@@ -26,6 +26,7 @@ body {
   border: 1px solid gray;
   width: 45%;
   display: inline-block;
+  cursor: pointer;
 }
 
 .img {
@@ -40,6 +41,14 @@ body {
   background-color: cadetblue;
 }
 
-.choose-fighter div{
-  cursor: pointer;
+.team-one, .team-two {
+  width: 400px;
+  height: 200px;
+  border: 1px solid gray;
+}
+
+.team-holder {
+  border: 1px solid gray;
+  width: 49%;
+  display: inline-block;
 }
