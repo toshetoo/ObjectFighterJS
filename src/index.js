@@ -142,7 +142,8 @@ function attachDragAndDropHandlers() {
         let data = $('.container').data('draggged');
         $('.team-one').append(data);
 
-        if ($('.team-two').children().length > 0 && $('.team-one').children().length > 0) {
+        if ($('.team-two').children().length > 0 && $('.team-one').children().length > 0 && !hasStartButton) {
+            hasStartButton = true;
             attachStartButton(true);
         }
     });

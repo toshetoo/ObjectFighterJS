@@ -79,7 +79,8 @@ export default class Game {
                     if (teamTwo.fighters.length === 0) break;
                 }
 
-                if (number > 210 && number < 250) {
+                let specialAttack = Helpers.getRandomNumber(0, 100);
+                if (specialAttack > 60 && specialAttack < 80) {
                     const consumable = Consumable.getConsumable();
                     let randomFighter = teamOne.fighters[Helpers.getRandomNumber(0, teamOne.fighters.length - 1)];
                     randomFighter.health += consumable.health;
@@ -105,7 +106,8 @@ export default class Game {
                     if (teamOne.fighters.length === 0) break;
                 }
 
-                if (number > 210 && number < 250) {
+                let specialAttack = Helpers.getRandomNumber(0, 100);
+                if (specialAttack > 60 && specialAttack < 80) {
                     const consumable = Consumable.getConsumable();
                     let randomFighter = teamTwo.fighters[Helpers.getRandomNumber(0, teamTwo.fighters.length - 1)];
                     randomFighter.health += consumable.health;
