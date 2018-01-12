@@ -3,9 +3,12 @@ import {Helpers} from "../utils/helpers";
 import {Logger} from "../utils/logger";
 import Consumable from "./consumables";
 import {getFighters} from "../api/mockFighters";
+import GameEvent from "./GameEvent";
 
-const roundInterval = 500;
+const roundInterval = 1500;
 let intervalId;
+let event;
+let selectedTeam;
 
 export default class Game {
     static startGame(firstFighter, secondFighter) {
@@ -16,6 +19,42 @@ export default class Game {
         intervalId = setInterval(() => {
             Referee.showRoundNumber();
             const number = Helpers.getRandomNumber(0, 201);
+            if(number > 80 && number < 120 && !event) {
+                event = GameEvent.generateEvent();
+                event.logEvent();
+                if(event.isGlobal) {
+                    event.effect([firstFighter, secondFighter]);
+                } else if(event.isTeamEvent) {
+                    if(!selectedTeam) {
+                        selectedTeam = Helpers.getRandomNumber(1,2);
+                    }
+
+                    selectedTeam === 1 ? event.effect([firstFighter]) : event.effect([secondFighter])
+                }
+
+                event.roundsLeft -=1;
+            }
+
+            if(event && event.roundsLeft > 0) {
+                if(event.isGlobal) {
+                    event.effect([firstFighter, secondFighter]);
+                } else if(event.isTeamEvent) {
+                    if(!selectedTeam) {
+                        selectedTeam = Helpers.getRandomNumber(1,2);
+                    }
+
+                    selectedTeam === 1 ? event.effect([firstFighter]) : event.effect([secondFighter])
+                }
+
+                event.roundsLeft -=1;
+            }
+
+            if(event && event.roundsLeft === 0) {
+                event = undefined;
+                selectedTeam = undefined;
+            }
+
+
             if (number > 100) {
                 secondFighter.health -= firstFighter.hit();
 
@@ -60,6 +99,44 @@ export default class Game {
         intervalId = setInterval(() => {
             Referee.showRoundNumber();
             const number = Helpers.getRandomNumber(0, 1001);
+
+
+            if(number > 460 && number < 540 && !event) {
+                event = GameEvent.generateEvent();
+                event.logEvent();
+                if(event.isGlobal) {
+                    event.effect(teamOne.fighters);
+                    event.effect(teamTwo.fighters);
+                } else if(event.isTeamEvent) {
+                    if(!selectedTeam) {
+                        selectedTeam = Helpers.getRandomNumber(1,2);
+                    }
+
+                    selectedTeam === 1 ? event.effect(teamOne.fighters) : event.effect(teamTwo.fighters)
+                }
+
+                event.roundsLeft -=1;
+            }
+
+            if(event && event.roundsLeft > 0) {
+                if(event.isGlobal) {
+                    event.effect(teamOne.fighters);
+                    event.effect(teamTwo.fighters);
+                } else if(event.isTeamEvent) {
+                    if(!selectedTeam) {
+                        selectedTeam = Helpers.getRandomNumber(1,2);
+                    }
+
+                    selectedTeam === 1 ? event.effect(teamOne.fighters) : event.effect(teamTwo.fighters)
+                }
+
+                event.roundsLeft -=1;
+            }
+
+            if(event && event.roundsLeft === 0) {
+                event = undefined;
+                selectedTeam = undefined;
+            }
 
             if (number < 500) {
                 for(let i=0; i<teamOne.fighters.length; i++) {
