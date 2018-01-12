@@ -19,7 +19,7 @@ export default class Game {
         intervalId = setInterval(() => {
             Referee.showRoundNumber();
             const number = Helpers.getRandomNumber(0, 201);
-            if(number > 80 && number < 120 && !event) {
+            if(number > 90 && number < 110 && !event) {
                 event = GameEvent.generateEvent();
                 event.logEvent();
                 if(event.isGlobal) {
@@ -101,7 +101,7 @@ export default class Game {
             const number = Helpers.getRandomNumber(0, 1001);
 
 
-            if(number > 460 && number < 540 && !event) {
+            if(number > 470 && number < 530 && !event) {
                 event = GameEvent.generateEvent();
                 event.logEvent();
                 if(event.isGlobal) {
