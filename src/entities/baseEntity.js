@@ -8,6 +8,7 @@ export class BaseEntity {
         this.health = baseEntity.health;
         this.image = baseEntity.image;
         this.strength = baseEntity.strength;
+        this.description = baseEntity.description;
     }
 
     hit() {

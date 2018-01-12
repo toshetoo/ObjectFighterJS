@@ -20,6 +20,7 @@ export class Logger {
                         <div class="name">Name: ${obj.name}</div>
                         <div class="health">Health: ${obj.health}</div>
                         <div class="strength">Strength: ${obj.strength}</div>
+                        <div class="descr">Bio: ${obj.description}</div>
                     </div>
                 </div>               
             </div>
